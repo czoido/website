@@ -281,6 +281,17 @@ jQuery(document).ready(function (t) {
         });
 
         $.ajax({
+          type: 'GET',
+          url: '/center/api/ui/search?name_fragment=h',
+        })
+        .done(function(res) {
+          console.log('Relative Search AJAX res=', res);
+        })
+        .fail(function(err) {
+          console.log('Error: ' + err.status);
+        });
+
+        $.ajax({
           type: 'POST',
           url: 'https://jsonplaceholder.typicode.com/posts',
           body: JSON.stringify({
