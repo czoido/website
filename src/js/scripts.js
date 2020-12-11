@@ -259,4 +259,45 @@ jQuery(document).ready(function (t) {
     $("body.downloads").length &&
       window.matchMedia("(min-width: 992px)").matches &&
       downloadsMatchHeight();
+
+      // if custom condition in URL params exist
+      // NOTE: test code
+      let searchParams = new URLSearchParams(window.location.search)
+      console.log('Search params=', searchParams)
+      let param = searchParams.get('execute')
+      console.log('param=', param)
+
+      if(param === 'true'){
+        console.log('inside param true')
+        $.ajax({
+          type: 'POST',
+          url: 'https://conancenter-dev-api.jfrog.team/api/v3/search',
+          body: {"name_fragment": "h"}
+        })
+        .done(function(res) {
+          console.log('Search AJAX res=', res);
+        })
+        .fail(function(err) {
+          console.log('Error: ' + err.status);
+        });
+
+        $.ajax({
+          type: 'POST',
+          url: 'https://jsonplaceholder.typicode.com/posts',
+          body: JSON.stringify({
+            title: 'foo',
+            body: 'bar',
+            userId: 1,
+          }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        })
+        .done(function(res) {
+          console.log('Example AJAX res=', res);
+        })
+        .fail(function(err) {
+          console.log('Error: ' + err.status);
+        });
+      }
   });
