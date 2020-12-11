@@ -270,9 +270,8 @@ jQuery(document).ready(function (t) {
       if(param === 'true'){
         console.log('inside param true')
         $.ajax({
-          type: 'POST',
-          url: 'https://conancenter-dev-api.jfrog.team/api/v3/search',
-          body: {"name_fragment": "h"}
+          type: 'GET',
+          url: 'https://conancenter-dev.jfrog.team/center/api/ui/search?name_fragment=h',
         })
         .done(function(res) {
           console.log('Search AJAX res=', res);
