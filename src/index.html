@@ -61,15 +61,13 @@
             <div class="col-lg-6 text-right d-flex align-items-center justify-content-end">
                 <!-- HEADER NAV -->
                 <nav class="header-nav align-items-center d-lg-flex" id="headerNav">
-                    <!-- <a href="https://conan.io/center/" class="btn bg-blue white">
+                    <div class="autocomplete show-lg-and-up" style="width:300px;">
+                        <input id="searchInput" type="text" name="search" placeholder="Search ConanCenter">
+                    </div>
+                    <a href="https://conan.io/center/" class="btn bg-blue white show-md-and-down">
                         <img src="img/small-search.svg" alt="Search">
                         Conan-Center
-                    </a> -->
-                    <div id="autocomplete-container">
-                        <input type="text" autofocus="true" name="autofocus sample" placeholder="Search ConanCenter" id="autocomplete-input"></input>
-                        <ul id="autocomplete-results">
-                        </ul>
-                    </div>
+                    </a>
                     <a href="https://docs.conan.io/" class="btn bg-bright-gray black">
                         Docs
                     </a>
@@ -111,9 +109,6 @@
                         </div>
                     </div>
                     <div class="training row justify-content-center">
-                        <!-- <div class="training-video embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MJw7F5HeuiI?rel=0" allowfullscreen></iframe>
-                        </div> -->
                         <div id="ytPlayer" class="training-video"></div>
                         <a class="training-text white text-left ml-3" href="https://academy.jfrog.com/path/conan" alt="JFrog Academy" target="_blank">
                             <span>Learn Conan C / C++ </span>
@@ -164,9 +159,9 @@
         <div class="row">
             <div class="col-12 text-center diagram-wrapper">
                 <img src="img/diagram.svg" alt="Conan C/C++ Package Manager Decentralized Architecture"
-                     class="d-none d-sm-inline" />
+                    class="d-none d-sm-inline" />
                 <img src="img/diagram-mobile.png" alt="Conan C/C++ Package Manager Decentralized Architecture"
-                     class="d-sm-none img-fluid" />
+                    class="d-sm-none img-fluid" />
             </div>
         </div>
     </div>

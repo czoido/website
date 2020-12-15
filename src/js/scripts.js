@@ -116,70 +116,109 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-var input = document.querySelector('input');
-var people = ['john doe', 'maria', 'paul', 'george', 'jimmy'];
-var results;
-
-// functions
-function autocomplete(val) {
-
-  // $.ajax({
-  //   type: 'GET',
-  //   url: `/center/api/ui/search?name_fragment=${val}`,
-  // })
-  // .done(function(res) {
-  //   console.log('Relative Search API, AJAX res=', res);
-  //   response = res;
-  // })
-  // .fail(function(err) {
-  //   console.log('Relative Search API, Error: ' + err.status);
-  // });
-
-  return $.ajax({
-    type: 'GET',
-    url: `http://localhost:8000/search?name_fragment=${val}`,
-  })
-  .done(function(res) {
-    console.log('LOCAL API RES=', res);
-  })
-  .fail(function(err) {
-    console.log('LOCAL API error:' + err.status);
+/* Search Logic Starts */
+function autocomplete(inp) {
+  var currentFocus;
+  inp.addEventListener("input", async function(e) {
+      var a, b, i, val = this.value;
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      const arr = await fetchData(val);
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      this.parentNode.appendChild(a);
+      for (i = 0; i < 5; i++) {
+          b = document.createElement("DIV");
+          b.innerHTML += '<span class="at-row"><span class="at-column-70 pkg-name">'
+          + arr[i].name + '</span>'
+          + '<span class="at-column-30 pkg-version">'
+          + arr[i].latest_version + '</span>'
+          + '</span>';
+          b.addEventListener("click", function(e) {
+              window.open('/center/' + this.querySelector(".pkg-name").innerHTML);
+              closeAllLists();
+          });
+          a.appendChild(b);
+      }
+      const seeAll = document.createElement("DIV");
+      seeAll.className += 'see-all'
+      seeAll.innerHTML += '<span><a id="allResults" href="">See All Results</a></span>';
+      a.appendChild(seeAll);
+      const anchr = document.getElementById("allResults")
+      anchr.href = '/center/search/' + val;
+      anchr.setAttribute("target", "_blank");
+  });
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    if (!x) return false;
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute closeAllLists when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
   });
 }
 
-// events
-input.onkeyup = async function(e) {
-  input_val = this.value; // updates the variable on each ocurrence
-
-  if (input_val.length > 0) {
-    var packages = [];
-
-    autocomplete_results = document.getElementById("autocomplete-results");
-    autocomplete_results.innerHTML = '';
-    const data = await autocomplete(input_val);
-    console.log('status=', status)
-    console.log('data=', data)
-    if(data.packages) {
-      packages = data.packages
-    }
-    console.log('RESPONSE=', packages)
-    
-    for (i = 0; i < 5; i++) {
-      // autocomplete_results.innerHTML += '<li>' + packages[i].name + packages[i].latest_version + '</li>';
-      autocomplete_results.innerHTML += 
-      '<li><div class="at-row"><span class="at-column-70">'
-      + packages[i].name + '</span>'
-      + '<span class="at-column-30">'
-      + packages[i].latest_version + '</span>'
-      + '</div></li>';
-    }
-    autocomplete_results.innerHTML += '<li class="see-all"><a href="">See All Results</a></li>'
-    autocomplete_results.style.display = 'block';
-  } else {
-    packages = [];
-    autocomplete_results.innerHTML = '';
-  }
+function fetchData(q) {
+	return  $.ajax({
+    type: 'GET',
+    url: `/center/api/ui/search?name_fragment=${q}`,
+  })
+  .done(function(res) {
+    console.log('Relative Search AJAX res=', res);
+  })
+  .fail(function(err) {
+    console.log('Error: ' + err.status);
+  });
 }
+
+/*initiate the autocomplete function on the "searchInput" element*/
+autocomplete(document.getElementById("searchInput"));
+
+/* Search Logic Ends */
 
 jQuery(document).ready(function (t) {
   if (
@@ -324,55 +363,4 @@ jQuery(document).ready(function (t) {
     $("body.downloads").length &&
       window.matchMedia("(min-width: 992px)").matches &&
       downloadsMatchHeight();
-
-      // if custom condition in URL params exist
-      // NOTE: test code
-      let searchParams = new URLSearchParams(window.location.search)
-      console.log('Search params=', searchParams)
-      let param = searchParams.get('execute')
-      console.log('param=', param)
-
-      if(param === 'true'){
-        console.log('inside param true')
-        $.ajax({
-          type: 'GET',
-          url: 'https://conancenter-dev.jfrog.team/center/api/ui/search?name_fragment=h',
-        })
-        .done(function(res) {
-          console.log('Search AJAX res=', res);
-        })
-        .fail(function(err) {
-          console.log('Error: ' + err.status);
-        });
-
-        $.ajax({
-          type: 'GET',
-          url: '/center/api/ui/search?name_fragment=h',
-        })
-        .done(function(res) {
-          console.log('Relative Search AJAX res=', res);
-        })
-        .fail(function(err) {
-          console.log('Error: ' + err.status);
-        });
-
-        $.ajax({
-          type: 'POST',
-          url: 'https://jsonplaceholder.typicode.com/posts',
-          body: JSON.stringify({
-            title: 'foo',
-            body: 'bar',
-            userId: 1,
-          }),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-          },
-        })
-        .done(function(res) {
-          console.log('Example AJAX res=', res);
-        })
-        .fail(function(err) {
-          console.log('Error: ' + err.status);
-        });
-      }
   });
