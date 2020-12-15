@@ -124,7 +124,8 @@ function autocomplete(inp) {
       closeAllLists();
       if (!val) { return false;}
       currentFocus = -1;
-      const arr = await fetchData(val);
+      const res = await fetchData(val);
+      const arr = res.packages ? res.packages : [];
       a = document.createElement("DIV");
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
