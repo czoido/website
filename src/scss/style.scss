@@ -1562,3 +1562,69 @@ a.green-cta {
     background: #4ac750;
   }
 }
+
+$color: #000000;
+$border-color: 2px solid rgba(0, 0, 0, .6);
+$focus-overlay: rgba(0, 0, 0, 0.1);
+
+#autocomplete-container {
+  
+  #autocomplete-input {
+    color: $color;
+    width: 100%;
+    border: $border-color;
+    outline: none;
+    color: $color;
+    font-size: 20px;
+  }
+}
+
+#autocomplete-results {
+  display: none;
+  width: 100%;
+  margin-top: -2px;
+  color: $color;
+  list-style: none;
+  padding: 0px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 57px;
+  z-index: 1;
+  width: 37.9%;
+  
+  li {
+    width: 100%;
+    border-right: $border-color;
+    border-left: $border-color;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+/* Create two equal columns that float next to each other */
+.at-column-70 {
+  float: left;
+  width: 70%;
+  padding: 5px;
+  text-align: left;
+}
+
+.at-column-30 {
+  float: left;
+  width: 30%;
+  padding: 5px;
+  text-align: left;
+}
+
+/* Clear floats after the columns */
+.at-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.see-all{
+  text-align: center;
+}

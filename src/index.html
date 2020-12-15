@@ -61,10 +61,15 @@
             <div class="col-lg-6 text-right d-flex align-items-center justify-content-end">
                 <!-- HEADER NAV -->
                 <nav class="header-nav align-items-center d-lg-flex" id="headerNav">
-                    <a href="https://conan.io/center/" class="btn bg-blue white">
+                    <!-- <a href="https://conan.io/center/" class="btn bg-blue white">
                         <img src="img/small-search.svg" alt="Search">
                         Conan-Center
-                    </a>
+                    </a> -->
+                    <div id="autocomplete-container">
+                        <input type="text" autofocus="true" name="autofocus sample" placeholder="Search ConanCenter" id="autocomplete-input"></input>
+                        <ul id="autocomplete-results">
+                        </ul>
+                    </div>
                     <a href="https://docs.conan.io/" class="btn bg-bright-gray black">
                         Docs
                     </a>

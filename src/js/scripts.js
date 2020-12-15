@@ -116,6 +116,71 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
+var input = document.querySelector('input');
+var people = ['john doe', 'maria', 'paul', 'george', 'jimmy'];
+var results;
+
+// functions
+function autocomplete(val) {
+
+  // $.ajax({
+  //   type: 'GET',
+  //   url: `/center/api/ui/search?name_fragment=${val}`,
+  // })
+  // .done(function(res) {
+  //   console.log('Relative Search API, AJAX res=', res);
+  //   response = res;
+  // })
+  // .fail(function(err) {
+  //   console.log('Relative Search API, Error: ' + err.status);
+  // });
+
+  return $.ajax({
+    type: 'GET',
+    url: `http://localhost:8000/search?name_fragment=${val}`,
+  })
+  .done(function(res) {
+    console.log('LOCAL API RES=', res);
+  })
+  .fail(function(err) {
+    console.log('LOCAL API error:' + err.status);
+  });
+}
+
+// events
+input.onkeyup = async function(e) {
+  input_val = this.value; // updates the variable on each ocurrence
+
+  if (input_val.length > 0) {
+    var packages = [];
+
+    autocomplete_results = document.getElementById("autocomplete-results");
+    autocomplete_results.innerHTML = '';
+    const data = await autocomplete(input_val);
+    console.log('status=', status)
+    console.log('data=', data)
+    if(data.packages) {
+      packages = data.packages
+    }
+    console.log('RESPONSE=', packages)
+    
+    for (i = 0; i < 5; i++) {
+      // autocomplete_results.innerHTML += '<li>' + packages[i].name + packages[i].latest_version + '</li>';
+      autocomplete_results.innerHTML += 
+      '<li><div class="at-row"><span class="at-column-70">'
+      + packages[i].name + '</span>'
+      + '<span class="at-column-30">'
+      + packages[i].latest_version + '</span>'
+      + '</div></li>';
+    }
+    autocomplete_results.innerHTML += '<li class="see-all"><a href="">See All Results</a></li>'
+    autocomplete_results.style.display = 'block';
+  } else {
+    packages = [];
+    autocomplete_results.innerHTML = '';
+  }
+}
+
 jQuery(document).ready(function (t) {
   if (
     (t(".lazy").Lazy(),
