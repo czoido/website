@@ -130,7 +130,8 @@ function autocomplete(inp) {
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
       this.parentNode.appendChild(a);
-      for (i = 0; i < 5; i++) {
+      const len = arr.length > 5 ? 5 : arr.length;
+      for (i = 0; i < len; i++) {
           b = document.createElement("DIV");
           b.innerHTML += '<span class="at-row"><span class="at-column-70 pkg-name">'
           + arr[i].name + '</span>'
