@@ -208,7 +208,7 @@ function fetchData(q) {
 	return  $.ajax({
     type: 'POST',
     url: '/center/api/ui/smartsearch',
-    data: `{search_params: "searchstring:${q}"}`,
+    data: `{"search_params": "searchstring:${q}"}`,
     contentType: "application/json"
   })
   .done(function(res) {
