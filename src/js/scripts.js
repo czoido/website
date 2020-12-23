@@ -206,8 +206,10 @@ function autocomplete(inp) {
 
 function fetchData(q) {
 	return  $.ajax({
-    type: 'GET',
-    url: `/center/api/ui/search?name_fragment=${q}`,
+    type: 'POST',
+    url: '/center/api/ui/smartsearch',
+    data: `{search_params: "searchstring:${q}"}`,
+    contentType: "application/json"
   })
   .done(function(res) {
     console.log('Relative Search AJAX res=', res);
