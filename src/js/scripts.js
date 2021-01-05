@@ -116,6 +116,114 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
+/* Search Logic Starts */
+function autocomplete(inp) {
+  var currentFocus;
+  inp.addEventListener("input", async function(e) {
+      var a, b, i, val = this.value;
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      const res = await fetchData(val);
+      const arr = res.packages ? res.packages : [];
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      this.parentNode.appendChild(a);
+      const len = arr.length > 5 ? 5 : arr.length;
+      for (i = 0; i < len; i++) {
+          b = document.createElement("DIV");
+          b.innerHTML += '<span class="at-row"><span class="at-column-70 pkg-name">'
+          + arr[i].name + '</span>'
+          + '<span class="at-column-30 pkg-version">'
+          + arr[i].latest_version + '</span>'
+          + '</span>';
+          b.addEventListener("click", function(e) {
+              window.open('/center/' + this.querySelector(".pkg-name").innerHTML);
+              closeAllLists();
+          });
+          a.appendChild(b);
+      }
+      const seeAll = document.createElement("DIV");
+      seeAll.className += 'see-all'
+      seeAll.innerHTML += '<span><a id="allResults" href="">See All Results</a></span>';
+      a.appendChild(seeAll);
+      const anchr = document.getElementById("allResults")
+      anchr.href = '/center/search/' + val;
+      anchr.setAttribute("target", "_blank");
+  });
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    if (!x) return false;
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute closeAllLists when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+function fetchData(q) {
+	return  $.ajax({
+    type: 'POST',
+    url: '/center/api/ui/smartsearch',
+    data: `{"search_params": "searchstring:${q}"}`,
+    contentType: "application/json"
+  })
+  .done(function(res) {
+    console.log('Relative Search AJAX res=', res);
+  })
+  .fail(function(err) {
+    console.log('Error: ' + err.status);
+  });
+}
+
+/*initiate the autocomplete function on the "searchInput" element*/
+autocomplete(document.getElementById("searchInput"));
+
+/* Search Logic Ends */
+
 jQuery(document).ready(function (t) {
   if (
     (t(".lazy").Lazy(),
