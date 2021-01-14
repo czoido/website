@@ -78,11 +78,11 @@ h1 {
   &.bg-blue {
     &:hover {
       color: #fff;
-      background-color: #2F6799;
+      background-color: $darker-blue;
     }
   }
   &.bg-dark-blue {
-    background-color: #2F6799;
+    background-color: $darker-blue;
     font-size: 20px;
     color: #fff;
     transition: all 0.32s ease;
@@ -1007,6 +1007,8 @@ section#downloads {
 
   .package-wrapper {
     margin-bottom: 8px;
+    width: 495px;
+    max-width: 100%;
     textarea {
       z-index: -100;
       opacity: 0;
@@ -1381,6 +1383,10 @@ hr.dotted {
   background-size: cover;
 }
 
+.open-sans {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
 body.tribe {
   #conanTribeMemberModal.modal {
     .modal-dialog {
@@ -1657,4 +1663,237 @@ input[type=submit] {
   .header-nav .show-md-and-down{display:block;}
   .header-nav .show-lg-and-up{display:none;}
 
+}
+
+//subscribe modal
+#openSourceSubscribeModal {
+  font-size: 20px;
+  font-family: 'Open Sans',sans-serif!important;
+  * {
+    border-radius: 0;
+  }
+  button.close {
+    top: 10px;
+    right: 10px;
+    font-weight: 200;
+    font-size: 20px;
+  }
+  .modal-dialog {
+    max-width: 850px;
+    .modal-body {
+      max-height: 100vh;
+      @media screen and (min-width: 768px) {
+        height: 500px;
+      }
+      .splitter {
+        .left {
+          background: $blue;
+          width: 100%;
+          @media screen and (min-width: 768px) {
+            width: 40%;
+          }
+        }
+        .right {
+          h2 {
+            font-size: 40px;
+          }
+          p {
+            color: #717171;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+          }
+          width: 100%;
+          @media screen and (min-width: 768px) {
+            width: 60%;
+          } 
+        }
+      }
+    }
+  }
+
+  form {
+    ::placeholder {
+      font-family: 'Open Sans', sans-serif !important;
+    }
+    button.mktoButton[type="submit"] {
+      background: $darker-blue;
+      color: white;
+      width: 200px;
+      height: 50px;
+      line-height: 1;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0;
+      border: 0;
+      transition: all 0.32s ease;
+      margin-top: 20px;
+      &:hover {
+        background: rgba($darker-blue, .85);
+      }
+    }
+    label#LblEmail, .mktoGutter, .mktoOffset, .mktoClear, .mktoAsterix {
+      display: none !important;
+    }
+    * {
+      font-family: 'Open Sans', sans-serif !important;
+    }
+    .mktoFormRow {
+      width: 330px !important;
+      max-width: 100% !important;
+    }
+    input[type="checkbox"] {
+      opacity: 0;
+    }
+    input[type="email"] {
+      height: 48px;
+      border: 1px solid #686868;
+      font-size: 15px;
+      width: 335px;
+      max-width: 100%;
+      padding: 15px;
+      // font-family: $text-font-stack;
+      border-radius: 0;
+    }
+    label {
+      font-size: 17px !important;
+      // font-family: $text-font-stack;
+      a {
+        // font-family: $text-font-stack;
+        font-size: 17px !important;
+        color: black !important;
+      }
+    }
+    .mktoFormRow:nth-child(2) {
+      >.mktoFieldDescriptor.mktoFormCol {
+        margin-bottom: 0 !important;
+        position: relative;
+        left: -40px;
+        >label#Lblacceptthetermsandconditions {
+          display: none !important;
+        }
+      }
+    }
+    .mktoHtmlText.mktoHasWidth {
+      width: 330px !important;
+      // max-width: 100% !important;
+      span[style="font-size: 10px;"] {
+        position: relative;
+        left: 70px;
+        top: 3px;
+        font-size: 17px !important;
+        @media screen and (max-width: 576px) {
+          top: 6px;
+        }
+        
+      }
+    }
+    span[style="margin-left: 120px;"] {
+      margin-left: 0 !important;
+    }
+    .marketo-submit-row {
+      margin-top: 15px;
+    }
+    @media screen and (max-width: 576px) {
+      .magic-checkbox + label:before {
+        top: -40px; 
+        left: 10px;
+      }
+      .mkto-checkbox-form-row > .mktoFormCol:not(.mktoFieldDescriptor) {
+        display: none !important;
+      }
+    } 
+  }
+
+}
+
+//magic checkbox
+.magic-checkbox-error {
+  &:before {
+    border-color: red !important;
+    border-width: 2px !important;
+  }
+}
+
+.magic-radio,
+.magic-checkbox {
+  position: absolute;
+  display: none;
+}
+.magic-radio[disabled],
+.magic-checkbox[disabled] {
+  cursor: not-allowed;
+}
+
+.magic-radio + label,
+.magic-checkbox + label {
+  position: relative;
+  display: block;
+  padding-left: 30px;
+  cursor: pointer;
+  vertical-align: middle;
+
+  &:hover {
+    &:before {
+      animation-duration: 0.4s;
+      animation-fill-mode: both;
+      animation-name: hover-color;
+    }
+  }
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    content: '';
+    border: 1px solid black;
+  }
+  &:after {
+    position: absolute;
+    display: none;
+    top: 2px;
+    left: 7px;
+    box-sizing: border-box;
+    width: 6px;
+    height: 12px;
+    transform: rotate(45deg);
+    border: 2px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    content: '';
+  }
+}
+.magic-radio[disabled] + label,
+.magic-checkbox[disabled] + label {
+  cursor: not-allowed;
+  color: #d4d4d4;
+  &:hover,
+  &:before,
+  &:after {
+    cursor: not-allowed;
+  }
+  &:hover {
+    &:before {
+      border: 1px solid #d4d4d4;
+      animation-name: none;
+    }
+  }
+  &:before {
+    border-color: #d4d4d4;
+  }
+}
+.magic-radio:checked + label,
+.magic-checkbox:checked + label {
+  &:before {
+    animation-name: none;
+    background-color: $blue;
+    border: 1px solid $blue
+  }
+  &:after {
+    display: block;
+  }
 }

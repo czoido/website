@@ -11,7 +11,8 @@ document.body.classList.contains("home") &&
         !1
       );
     });
-  }),
+  })
+
   document.querySelector("section#signUp") &&
     MktoForms2.loadForm(
       "https://leap.jfrog.com",
@@ -28,6 +29,9 @@ document.body.classList.contains("home") &&
         });
       }
     );
+
+
+
 const bootstrap_sm = "769px",
   bootstrap_md = "992px";
 var shuffleHasStarted = !1;
@@ -220,6 +224,8 @@ function fetchData(q) {
 }
 
 /*initiate the autocomplete function on the "searchInput" element*/
+//please add an "if is home statement !"
+if ($('body.home').length)
 autocomplete(document.getElementById("searchInput"));
 
 /* Search Logic Ends */
@@ -247,6 +253,13 @@ jQuery(document).ready(function (t) {
         matchHeight(t(".advantage-text .line-1")))),
     t("body.downloads").length)
   ) {
+
+    //subscribe modal
+    let openSourceSubscribeModal = $('#openSourceSubscribeModal');
+
+    $('.cn-download').on('click', ()=> openSourceSubscribeModal.modal('show'))
+    //subscribe modal end
+
     let o = "Copy install command to clipboard",
       e = "Download",
       a = "Go To URL";
@@ -368,3 +381,46 @@ jQuery(document).ready(function (t) {
       window.matchMedia("(min-width: 992px)").matches &&
       downloadsMatchHeight();
   });
+
+  if (document.body.classList.contains('downloads') ) {
+    MktoForms2.loadForm(
+      "//leap.jfrog.com",
+      "256-FNZ-187", 3511,
+      function (t) {
+          // t.
+          t.onSuccess(function (o, e) {
+          return (
+              t.getFormElem().fadeOut(),
+              (document.getElementById("subscribeSuccess").textContent =
+              "Thanks! you have subscribed successfuly."),
+              !1
+          );
+          });
+        //form
+        let form = t.getFormElem()[0]
+        form.querySelector('style').remove()
+        form.style.width = 'auto'
+        form.style.padding = '0'
+        form.style.margin = '0'
+                                      
+        //email
+        let emailInput = form.querySelector('input#Email')
+        emailInput.classList.add('form-control')
+        emailInput.setAttribute('placeholder', 'Your Email')
+                                      
+        //TAC checkbox
+        let tacCheckbox = form.querySelector('input#acceptthetermsandconditions')
+        tacCheckbox.classList.add('magic-checkbox')
+        tacCheckbox.parentNode.parentNode.parentNode.parentNode.classList.add('mkto-checkbox-form-row')
+
+        let checkBoxAndLabelContainer = form.querySelector('label#Lblacceptthetermsandconditions')
+        let labelElement = form.querySelector('.mktoHtmlText.mktoHasWidth')
+        checkBoxAndLabelContainer.appendChild(labelElement)
+
+        let submitBtn = form.querySelector('button.mktoButton')
+        submitBtn.classList.add('j-btn')
+        submitBtn.innerText = 'Subscribe'
+        submitBtn.parentNode.parentNode.classList.add('marketo-submit-row')
+      }
+    )
+  }
