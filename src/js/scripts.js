@@ -61,8 +61,7 @@ function matchHeight(t) {
 }
 function downloadsMatchHeight() {
   matchHeight(jQuery(".front-text")),
-    // matchHeight(jQuery(".install")),
-    matchHeight(jQuery(".small-title"));
+  matchHeight(jQuery(".small-title"));
 }
 function copyToClipboard(t, o) {
   var e = t("<input>");
@@ -256,7 +255,6 @@ jQuery(document).ready(function (t) {
 
     //subscribe modal
     let openSourceSubscribeModal = $('#openSourceSubscribeModal');
-    openSourceSubscribeModal.modal('show')
     $('.cn-download').on('click', ()=> openSourceSubscribeModal.modal('show'))
     //subscribe modal end
 
