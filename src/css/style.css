@@ -823,6 +823,8 @@ section#downloads .ncta {
   font-weight: 500; }
   section#downloads .ncta:hover {
     opacity: .9; }
+  section#downloads .ncta.fcv-cta {
+    width: 255px; }
 
 section#downloads .downloads-item-wrapper {
   height: 100%; }
@@ -852,7 +854,7 @@ section#downloads h5 {
 
 section#downloads .package-wrapper {
   margin-bottom: 8px;
-  width: 495px;
+  width: 530px;
   max-width: 100%; }
   section#downloads .package-wrapper textarea {
     z-index: -100;
@@ -894,7 +896,7 @@ section#downloads .cn-box {
       section#downloads .cn-box.big {
         font-size: 16px; } }
   section#downloads .cn-box.cn-main {
-    width: 344px; }
+    width: 378px; }
     section#downloads .cn-box.cn-main#artiZipMain {
       width: auto;
       padding-right: 20px; }
@@ -937,7 +939,8 @@ section#downloads .cn-box {
     background-color: #D7D7D7;
     background-repeat: no-repeat;
     background-position: center center;
-    transition: all 0.32s ease; }
+    transition: all 0.32s ease;
+    margin-right: 0; }
     section#downloads .cn-box.cn-action:hover {
       background-color: #7BA7D3;
       border-color: #7BA7D3; }
@@ -1460,7 +1463,11 @@ input[type=submit] {
       position: relative;
       left: 70px;
       top: 3px;
-      font-size: 17px !important; }
+      font-size: 16.7px !important;
+      font-weight: normal; }
+      #openSourceSubscribeModal form .mktoHtmlText.mktoHasWidth span[style="font-size: 10px;"] a {
+        font-weight: bold;
+        font-size: 16.7px; }
       @media screen and (max-width: 576px) {
         #openSourceSubscribeModal form .mktoHtmlText.mktoHasWidth span[style="font-size: 10px;"] {
           top: 6px; } }

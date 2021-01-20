@@ -970,6 +970,9 @@ section#downloads {
     &:hover {
       opacity: .9;
     }
+    &.fcv-cta {
+      width: 255px;
+    }
   }
 
   .downloads-item-wrapper {
@@ -1007,7 +1010,7 @@ section#downloads {
 
   .package-wrapper {
     margin-bottom: 8px;
-    width: 495px;
+    width: 530px;
     max-width: 100%;
     textarea {
       z-index: -100;
@@ -1061,7 +1064,7 @@ section#downloads {
     }
 
     &.cn-main {
-      width: 344px;
+      width: 378px;
       &#artiZipMain {
         width: auto;
         padding-right: 20px;
@@ -1113,6 +1116,7 @@ section#downloads {
       background-repeat: no-repeat;
       background-position: center center;
       transition: all 0.32s ease;
+      margin-right: 0;
       &:hover {
         background-color: $blue;
         border-color: $blue;
@@ -1783,7 +1787,12 @@ input[type=submit] {
         position: relative;
         left: 70px;
         top: 3px;
-        font-size: 17px !important;
+        font-size: 16.7px !important;
+        font-weight: normal;
+        a {
+          font-weight: bold;
+          font-size: 16.7px;
+        }
         @media screen and (max-width: 576px) {
           top: 6px;
         }
