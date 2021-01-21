@@ -253,15 +253,17 @@ jQuery(document).ready(function (t) {
     t("body.downloads").length)
   ) {
 
+    $('.info-circle').tooltip()
+
     //subscribe modal
     let openSourceSubscribeModal = $('#openSourceSubscribeModal');
-    $('.cn-download').on('click', 
+    $('#artifactoryZipPackage .cn-download').on('click', 
       ()=> {
         openSourceSubscribeModal.modal('show')
         dataLayer.push({​
           'formName': '{​{MRK FormType}}',
           'event': 'conanFormSent'
-        });
+        })
       }
     )
     //subscribe modal end

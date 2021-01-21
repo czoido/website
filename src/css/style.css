@@ -798,6 +798,14 @@ footer#siteFooter {
     footer#siteFooter ul.socials a:hover {
       opacity: 0.5; }
 
+section#downloads #artifactoryZipPackage .info-circle {
+  right: -30px;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 29px; }
+
 section#downloads button.dropdown-toggle:after {
   margin-right: 15px;
   color: #8b8b8b;
@@ -826,7 +834,8 @@ section#downloads .ncta {
   section#downloads .ncta:hover {
     opacity: .9; }
   section#downloads .ncta.fcv-cta {
-    width: 255px; }
+    width: 225px;
+    height: 57px; }
 
 section#downloads .downloads-item-wrapper {
   height: 100%; }
@@ -898,7 +907,7 @@ section#downloads .cn-box {
       section#downloads .cn-box.big {
         font-size: 16px; } }
   section#downloads .cn-box.cn-main {
-    width: 378px; }
+    width: 342px; }
     section#downloads .cn-box.cn-main#artiZipMain {
       width: auto;
       padding-right: 20px; }
