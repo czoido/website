@@ -246,6 +246,9 @@ header#masthead {
   .header-logo {
     max-height: 82px;
   }
+  #searchInput {
+    height: 37px;
+  }
   @media screen and (max-width: 480px) {
     .header-hamburger-col {
       padding-right: 5px;

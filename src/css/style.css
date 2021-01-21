@@ -326,6 +326,8 @@ header#masthead {
     bottom: 1px; }
   header#masthead .header-logo {
     max-height: 82px; }
+  header#masthead #searchInput {
+    height: 37px; }
   @media screen and (max-width: 480px) {
     header#masthead .header-hamburger-col {
       padding-right: 5px; }
