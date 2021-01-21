@@ -255,7 +255,15 @@ jQuery(document).ready(function (t) {
 
     //subscribe modal
     let openSourceSubscribeModal = $('#openSourceSubscribeModal');
-    $('.cn-download').on('click', ()=> openSourceSubscribeModal.modal('show'))
+    $('.cn-download').on('click', 
+      ()=> {
+        openSourceSubscribeModal.modal('show')
+        dataLayer.push({​
+          'formName': '{​{MRK FormType}}',
+          'event': 'conanFormSent'
+        });
+      }
+    )
     //subscribe modal end
 
     let o = "Copy install command to clipboard",
