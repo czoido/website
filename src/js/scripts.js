@@ -394,15 +394,23 @@ jQuery(document).ready(function (t) {
     MktoForms2.loadForm(
       "//leap.jfrog.com",
       "256-FNZ-187", 3511,
-      function (t) {
-          // t.
+      function (t) { 
           t.onSuccess(function (o, e) {
-          return (
-              t.getFormElem().fadeOut(),
-              (document.getElementById("subscribeSuccess").textContent =
-              "Thanks! you have subscribed successfuly."),
-              !1
-          );
+            
+            if (dataLayer != undefined) {
+              dataLayer.push({
+                'formName': 'ConanEmailUpdates',
+                'event': 'conanFormSent' 
+              });
+            }
+
+            return (
+                t.getFormElem().fadeOut(),
+                (document.getElementById("subscribeSuccess").textContent =
+                "Thanks! you have subscribed successfuly."),
+                !1
+            );
+
           });
         //form
         let form = t.getFormElem()[0]
