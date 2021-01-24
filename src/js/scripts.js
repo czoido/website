@@ -257,15 +257,9 @@ jQuery(document).ready(function (t) {
 
     //subscribe modal
     let openSourceSubscribeModal = $('#openSourceSubscribeModal');
-    $('#artifactoryZipPackage .cn-download').on('click', 
-      ()=> {
+    $('#artifactoryZipPackage .cn-download').on('click', function() {
         openSourceSubscribeModal.modal('show')
-        dataLayer.push({​
-          'formName': '{​{MRK FormType}}',
-          'event': 'conanFormSent'
-        })
-      }
-    )
+    })
     //subscribe modal end
 
     let o = "Copy install command to clipboard",
@@ -396,6 +390,7 @@ jQuery(document).ready(function (t) {
       "256-FNZ-187", 3511,
       function (t) { 
           t.onSuccess(function (o, e) {
+            console.log('wtf?')
             
             if (dataLayer != undefined) {
               dataLayer.push({
