@@ -1292,7 +1292,14 @@ a.green-cta {
 /*the container must be positioned relative:*/
 .autocomplete {
   position: relative;
-  display: inline-block; }
+  right: 8%;
+  display: inline-block;
+  margin: 0 5px 0 5px; }
+  .autocomplete input {
+    border: 2px solid #84a7ce;
+    border-radius: 4px 0 0 4px; }
+  .autocomplete input:focus {
+    outline: #84a7ce auto 2px; }
 
 input {
   border: 1px solid transparent;
@@ -1551,3 +1558,60 @@ input[type=submit] {
 .magic-radio:checked + label:after,
 .magic-checkbox:checked + label:after {
   display: block; }
+
+.search-button {
+  background-color: #84a7ce;
+  height: 2rem;
+  width: 2.25rem;
+  text-align: center;
+  z-index: 2;
+  position: absolute;
+  top: 0px;
+  right: 0px; }
+
+.search-icon {
+  height: 1rem;
+  position: relative;
+  top: 2.5px; }
+
+.new-window-button {
+  position: absolute;
+  right: 48.5%;
+  background-color: #84a7ce;
+  border: none;
+  margin: 0 5px 0 5px;
+  height: 2rem;
+  width: 2rem;
+  text-align: center;
+  max-width: 2rem;
+  z-index: 3; }
+
+.new-window-button:hover {
+  position: absolute;
+  right: 48.5%;
+  width: 19.3rem;
+  max-width: 20rem;
+  -webkit-transition: max-width 0.2s;
+  transition: max-width 0.2s; }
+
+.new-window-icon {
+  height: 0.8rem;
+  float: right;
+  position: absolute;
+  right: 0.6rem;
+  top: 0.6rem; }
+
+.new-window-text {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  color: white;
+  font-size: 0.722rem;
+  font-weight: 400;
+  margin-left: 5px;
+  margin-top: 0.5rem;
+  float: left; }
+
+.new-window-button:hover .new-window-text {
+  visibility: visible;
+  opacity: 1; }
