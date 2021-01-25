@@ -1576,9 +1576,15 @@ a.green-cta {
   display: inline-block;
   margin: 0 5px 0 5px;
 
+  input, input[type=text]{
+    background-color: #fff;
+  }
+
   input {
     border: 2px solid #84a7ce;
     border-radius: 4px 0 0 4px;
+    font-size: 13px;
+    padding: 6.5px;
   }
 
   input:focus {
