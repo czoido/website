@@ -224,7 +224,7 @@ a.big-btn, button.big-btn {
   .example_f:hover span {
     padding-right: 25px;
   }
-  .example_f:hover span:after {
+  .example_f:hover span:after { 
     opacity: 1;
     right: 0;
   }
@@ -245,6 +245,9 @@ header#masthead {
   }
   .header-logo {
     max-height: 82px;
+  }
+  #searchInput {
+    height: 37px;
   }
   @media screen and (max-width: 480px) {
     .header-hamburger-col {
@@ -937,6 +940,17 @@ footer#siteFooter {
 
 section#downloads {
 
+  #artifactoryZipPackage {
+    .info-circle {
+      right: -30px;
+      top: 0;
+      bottom: 0;
+      margin-top: auto;
+      margin-bottom: auto;
+      height: 29px;
+    }
+  }
+
   button.dropdown-toggle {
     &:after {
       margin-right: 15px;
@@ -969,6 +983,10 @@ section#downloads {
     font-weight: 500;
     &:hover {
       opacity: .9;
+    }
+    &.fcv-cta {
+      width: 225px;
+      height: 57px;
     }
   }
 
@@ -1007,7 +1025,7 @@ section#downloads {
 
   .package-wrapper {
     margin-bottom: 8px;
-    width: 495px;
+    width: 530px;
     max-width: 100%;
     textarea {
       z-index: -100;
@@ -1061,7 +1079,7 @@ section#downloads {
     }
 
     &.cn-main {
-      width: 344px;
+      width: 342px;
       &#artiZipMain {
         width: auto;
         padding-right: 20px;
@@ -1113,6 +1131,7 @@ section#downloads {
       background-repeat: no-repeat;
       background-position: center center;
       transition: all 0.32s ease;
+      margin-right: 0;
       &:hover {
         background-color: $blue;
         border-color: $blue;
@@ -1800,7 +1819,12 @@ input[type=submit] {
         position: relative;
         left: 70px;
         top: 3px;
-        font-size: 17px !important;
+        font-size: 16.7px !important;
+        font-weight: normal;
+        a {
+          font-weight: bold;
+          font-size: 16.7px;
+        }
         @media screen and (max-width: 576px) {
           top: 6px;
         }

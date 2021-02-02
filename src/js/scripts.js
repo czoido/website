@@ -61,8 +61,7 @@ function matchHeight(t) {
 }
 function downloadsMatchHeight() {
   matchHeight(jQuery(".front-text")),
-    matchHeight(jQuery(".install")),
-    matchHeight(jQuery(".small-title"));
+  matchHeight(jQuery(".small-title"));
 }
 function copyToClipboard(t, o) {
   var e = t("<input>");
@@ -122,6 +121,10 @@ function onYouTubeIframeAPIReady() {
 
 /* Search Logic Starts */
 function autocomplete(inp) {
+
+  //TODO search bar checking
+  if (!inp) return
+
   var currentFocus;
   inp.addEventListener("input", async function(e) {
       var a, b, i, val = this.value;
@@ -254,10 +257,13 @@ jQuery(document).ready(function (t) {
     t("body.downloads").length)
   ) {
 
+    $('.info-circle').tooltip()
+
     //subscribe modal
     let openSourceSubscribeModal = $('#openSourceSubscribeModal');
-
-    $('.cn-download').on('click', ()=> openSourceSubscribeModal.modal('show'))
+    $('#artifactoryZipPackage .cn-download').on('click', function() {
+        openSourceSubscribeModal.modal('show')
+    })
     //subscribe modal end
 
     let o = "Copy install command to clipboard",
@@ -386,15 +392,23 @@ jQuery(document).ready(function (t) {
     MktoForms2.loadForm(
       "//leap.jfrog.com",
       "256-FNZ-187", 3511,
-      function (t) {
-          // t.
+      function (t) { 
           t.onSuccess(function (o, e) {
-          return (
-              t.getFormElem().fadeOut(),
-              (document.getElementById("subscribeSuccess").textContent =
-              "Thanks! you have subscribed successfuly."),
-              !1
-          );
+            
+            if (dataLayer != undefined) {
+              dataLayer.push({
+                'formName': 'ConanEmailUpdates',
+                'event': 'conanFormSent' 
+              });
+            }
+
+            return (
+                t.getFormElem().fadeOut(),
+                (document.getElementById("subscribeSuccess").textContent =
+                "Thanks! you have subscribed successfuly."),
+                !1
+            );
+
           });
         //form
         let form = t.getFormElem()[0]
