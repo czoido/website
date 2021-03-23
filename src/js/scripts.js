@@ -151,13 +151,12 @@ function autocomplete(inp) {
           });
           a.appendChild(b);
       }
-      const seeAll = document.createElement("DIV");
-      seeAll.className += 'see-all'
-      seeAll.innerHTML += '<span><a id="allResults" href="">See All Results</a></span>';
+      const seeAll = document.createElement("A");
+      seeAll.className += 'see-all';
+      seeAll.innerHTML = '<div class="all-results">See All Results</div>';
+      seeAll.href = '/center/search/' + val;
+      seeAll.setAttribute("target", "_blank");
       a.appendChild(seeAll);
-      const anchr = document.getElementById("allResults")
-      anchr.href = '/center/search/' + val;
-      anchr.setAttribute("target", "_blank");
   });
   inp.addEventListener("keydown", function(e) {
       var x = document.getElementById(this.id + "autocomplete-list");
