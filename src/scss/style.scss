@@ -246,6 +246,9 @@ header#masthead {
   .header-logo {
     max-height: 82px;
   }
+  .header-dark-blue {
+    background-color: #2F6799 !important;
+  }
   #searchInput {
     height: 37px;
   }
@@ -2003,4 +2006,47 @@ input[type=submit] {
 .new-window-button:hover .new-window-text {
   visibility: visible;
   opacity: 1;
+}
+
+#faqAccordion {
+  li.faq-element {
+    border-bottom: 1px solid #E6E6E6;
+    padding: 15px;
+    .top {
+      cursor: pointer;
+    }
+    .question {
+      font-size: 17px;
+      line-height: 1.2;
+      font-weight: 300;
+      transition: all 0.32s ease;
+    max-width: 900px;
+    }
+    .answer {
+      font-size: 16px;
+      color: #757575;
+      max-width: 900px;
+      a {
+        color: $darker-blue;
+        text-decoration: underline;
+      }
+    }
+    path,svg {
+      transition: all 0.32s ease;
+    }
+    &.active, &:hover {
+      .question {
+        color: $blue;
+      }
+      path {
+        stroke: $blue !important;
+      }
+    }
+    &.active {
+      svg {
+        transform: rotate(90deg);
+        transform-origin: center;
+      }
+    }
+  }
 }
