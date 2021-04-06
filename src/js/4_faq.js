@@ -117,12 +117,3 @@ jQuery(($) => {
     });
   }
 });
-
-
-{
-  employee(id: 20) {
-    edge {
-      email
-    }
-  }
-}
