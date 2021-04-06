@@ -73,47 +73,56 @@ const faqArray = [
 ];
 jQuery(($) => {
   const accordion = document.getElementById("faqAccordion");
+  if (accordion) {
 
-  faqArray.forEach((el) => {
-    const liEl = document.createElement("li");
-    liEl.classList.add("faq-element");
-    liEl.innerHTML = `
-        <div class="top d-flex justify-content-between">
-            <h3 class="question pt-1">${el.q}</h3>
-            <div class="arrow">
-                <svg
-                    fill="none"
-                    height="21"
-                    viewBox="0 0 21 21"
-                    width="21"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M7.49986 18.3722L17.0002 11.8722L7.49998 5.30793" stroke="#A5A5A5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>  
-            </div>
-        </div>
-        <div class="bottom">
-            <div class="answer" style="display: none;">
-              <div class="pb-2">${el.a}</div>
-            </div>
-        </div>
-        `;
-    accordion.appendChild(liEl);
-  });
+    faqArray.forEach((el) => {
+      const liEl = document.createElement("li");
+      liEl.classList.add("faq-element");
+      liEl.innerHTML = `
+          <div class="top d-flex justify-content-between">
+              <h3 class="question pt-1 pr-2">${el.q}</h3>
+              <div class="arrow">
+                  <svg
+                      fill="none"
+                      height="21"
+                      viewBox="0 0 21 21"
+                      width="21"
+                      xmlns="http://www.w3.org/2000/svg"
+                  >
+                      <path d="M7.49986 18.3722L17.0002 11.8722L7.49998 5.30793" stroke="#A5A5A5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>  
+              </div>
+          </div>
+          <div class="bottom">
+              <div class="answer" style="display: none;">
+                <div class="pb-2">${el.a}</div>
+              </div> 
+          </div>
+          `;
+      accordion.appendChild(liEl);
+    });
 
-  $(document).on("click", "li.faq-element", function (e) {
-      if (
-        $(e.target).hasClass("answer") ||
-        $(e.target).parents(".answer").length
-      ) {
-        return;
-      }
-      let that = $(this);
-      that
-        .toggleClass("active")
-        .find(".answer")
-        .slideToggle();
-  });
-
-  console.log("jquery");
+    $(document).on("click", "li.faq-element", function (e) {
+        if (
+          $(e.target).hasClass("answer") ||
+          $(e.target).parents(".answer").length
+        ) {
+          return;
+        }
+        let that = $(this);
+        that
+          .toggleClass("active")
+          .find(".answer")
+          .slideToggle();
+    });
+  }
 });
+
+
+{
+  employee(id: 20) {
+    edge {
+      email
+    }
+  }
+}
