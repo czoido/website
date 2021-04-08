@@ -67,21 +67,33 @@ const faqArray = [
   {
     q: `What resources exist to help me learn Conan?`,
     a:
-      `The Conan team has created multiple interactive, self-paced Conan training courses. <br />
-      These courses are all available completely free, courtesy of JFrog on their online training platform known as the <a href="https://academy.jfrog.com/series/conan" target="_blank" rel="noopener noreferrer">JFrog academy</a>.`,
+      `The Conan team has created multiple interactive, self-paced Conan training courses. 
+      These courses are all available completely free, courtesy of JFrog in the <a href="https://academy.jfrog.com/series/conan" target="_blank" rel="noopener noreferrer">JFrog academy</a>.`,
   },
 ];
 jQuery(($) => {
+  const faqList = document.getElementById('faqQuestionsList');
+
+  faqArray.forEach((el, i) => {
+    const liEl = document.createElement("li");
+    liEl.classList.add("faq-anchor");
+    liEl.innerHTML = `
+        <a href="#faq-${i+1}">${el.q}</a>
+        `;
+      faqList.appendChild(liEl);
+  });
+
+  
   const accordion = document.getElementById("faqAccordion");
   if (accordion) {
 
-    faqArray.forEach((el) => {
+    faqArray.forEach((el, i) => {
       const liEl = document.createElement("li");
       liEl.classList.add("faq-element");
       liEl.innerHTML = `
-          <div class="top d-flex justify-content-between">
+          <div class="top d-flex justify-content-between" id="faq-${i+1}">
               <h3 class="question pt-1 pr-2">${el.q}</h3>
-              <div class="arrow">
+              <div class="arrow d-none">
                   <svg
                       fill="none"
                       height="21"
@@ -93,8 +105,8 @@ jQuery(($) => {
                   </svg>  
               </div>
           </div>
-          <div class="bottom">
-              <div class="answer" style="display: none;">
+          <div class="bottom"> 
+              <div class="answer">
                 <div class="pb-2">${el.a}</div>
               </div> 
           </div>
@@ -103,6 +115,7 @@ jQuery(($) => {
     });
 
     $(document).on("click", "li.faq-element", function (e) {
+        return //faq sliding is cancelled. open always
         if (
           $(e.target).hasClass("answer") ||
           $(e.target).parents(".answer").length

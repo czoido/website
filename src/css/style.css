@@ -1645,8 +1645,6 @@ input[type=submit] {
 #faqAccordion li.faq-element {
   border-bottom: 1px solid #E6E6E6;
   padding: 15px; }
-  #faqAccordion li.faq-element .top {
-    cursor: pointer; }
   #faqAccordion li.faq-element .question {
     font-size: 17px;
     line-height: 1.2;
@@ -1662,10 +1660,3 @@ input[type=submit] {
       text-decoration: underline; }
   #faqAccordion li.faq-element path, #faqAccordion li.faq-element svg {
     transition: all 0.32s ease; }
-  #faqAccordion li.faq-element.active .question, #faqAccordion li.faq-element:hover .question {
-    color: #7BA7D3; }
-  #faqAccordion li.faq-element.active path, #faqAccordion li.faq-element:hover path {
-    stroke: #7BA7D3 !important; }
-  #faqAccordion li.faq-element.active svg {
-    transform: rotate(90deg);
-    transform-origin: center; }

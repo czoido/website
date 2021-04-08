@@ -1646,7 +1646,7 @@ input[type=submit] {
 
 .autocomplete-items div {
   padding: 5px;
-  cursor: pointer;
+  cursor: pointer; 
   background-color: #fff; 
   border-bottom: 1px solid #d4d4d4; 
 }
@@ -2012,9 +2012,6 @@ input[type=submit] {
   li.faq-element {
     border-bottom: 1px solid #E6E6E6;
     padding: 15px;
-    .top {
-      cursor: pointer;
-    }
     .question {
       font-size: 17px;
       line-height: 1.2;
@@ -2034,19 +2031,23 @@ input[type=submit] {
     path,svg {
       transition: all 0.32s ease;
     }
-    &.active, &:hover {
-      .question {
-        color: $blue;
-      }
-      path {
-        stroke: $blue !important;
-      }
-    }
-    &.active {
-      svg {
-        transform: rotate(90deg);
-        transform-origin: center;
-      }
-    }
+    // STYLING FOR THE ACCORDION. NOT RELEVANT FOR NOW
+    // .top {
+    //   cursor: pointer;
+    // }
+    // &.active, &:hover {  
+    //   .question {
+    //     color: $blue;
+    //   }
+    //   path {
+    //     stroke: $blue !important;
+    //   }
+    // }
+    // &.active {
+    //   svg {
+    //     transform: rotate(90deg);
+    //     transform-origin: center;
+    //   }
+    // }
   }
 }
