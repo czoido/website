@@ -2007,15 +2007,27 @@ input[type=submit] {
   visibility: visible;
   opacity: 1;
 }
+.faq-questions {
+  .container {
+    border-bottom: 1px solid #E6E6E6;
+  }
+  li.faq-anchor {
+    list-style: none;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    a {
+      color: $blue;
+    }
+  }
+}
 
 #faqAccordion {
   li.faq-element {
-    border-bottom: 1px solid #E6E6E6;
     padding: 15px;
     .question {
-      font-size: 17px;
+      font-size: 20px;
       line-height: 1.2;
-      font-weight: 300;
+      font-weight: 400;
       transition: all 0.32s ease;
       max-width: 900px;
     }

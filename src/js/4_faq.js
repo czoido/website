@@ -72,15 +72,21 @@ const faqArray = [
   },
 ];
 jQuery(($) => {
-  const faqList = document.getElementById('faqQuestionsList');
+  const faqListLeft  = document.getElementById('faqQuestionsListLeft');
+  const faqListRight = document.getElementById('faqQuestionsListRight');
+
+  const halfLengthFaqArray = Math.ceil(faqArray.length / 2)
 
   faqArray.forEach((el, i) => {
+    let n = i+1
+    let target = faqListLeft
+    if (n > halfLengthFaqArray)  target = faqListRight
     const liEl = document.createElement("li");
     liEl.classList.add("faq-anchor");
     liEl.innerHTML = `
         <a href="#faq-${i+1}">${el.q}</a>
         `;
-      faqList.appendChild(liEl);
+      target.appendChild(liEl);
   });
 
   
