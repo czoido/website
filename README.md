@@ -38,6 +38,3 @@ Base folder `src/`
 - After the push to the `staging` branch the website by CI's pipeline is deployed to staging environment.
 - After the push to the `master` branch the website by CI's pipeline is deployed to production environment.
 
-
-
-
